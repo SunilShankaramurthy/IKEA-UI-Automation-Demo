@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/sunilshankaramurthy/My_Projs/API_Auto/IKEA_UI_Automation_Demo">
+        <parameter name="platformName" value="Android"></parameter>
+        <parameter name="platformVersion" value="11.0"></parameter>
+        <parameter name="deviceName" value="Any device name"></parameter>
+        <classes>
+            <class name="com.ikea.automation.cart.ShoppingBagTest"></class>
+        </classes>
+
+    </test>
+</suite>
