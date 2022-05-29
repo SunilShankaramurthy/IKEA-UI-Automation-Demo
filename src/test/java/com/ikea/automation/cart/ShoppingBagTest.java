@@ -2,9 +2,13 @@ package com.ikea.automation.cart;
 
 import com.ikea.automation.base.BaseTest;
 import com.ikea.automation.pages.*;
+import io.appium.java_client.InteractsWithApps;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.lang.reflect.Method;
 
@@ -15,17 +19,30 @@ public class ShoppingBagTest extends BaseTest {
     ProductDetailPage productDetailPage;
     ShoppingBagPage shoppingBagPage;
     ProductCheckOut productcheckOut;
+    SoftAssert softAssert = new SoftAssert();
 
 
     @BeforeMethod
     public void beforeMethod(Method m) {
         homePage = new HomePage();
         ProductListPage productListPage = new ProductListPage();
+        ((InteractsWithApps) driver).launchApp();
+
         System.out.println("\n**************Starting Test: " + m.getName() + " *****************\n");
     }
 
-    @Test
-    public void validateProductDetails() throws InterruptedException {
+    @AfterMethod
+    public void afterMethod(){
+        ((InteractsWithApps) driver).closeApp();
+    }
+
+//    @AfterTest
+//    public void afterTest(){
+//        driver.quit();
+//    }
+
+    @Test(priority = 0)
+    public void compareProductDetails() throws InterruptedException {
 
         searchPage = homePage.tapOnSearchField();
         productListPage = searchPage.searchItem("Table");
@@ -35,17 +52,24 @@ public class ShoppingBagTest extends BaseTest {
         String productNameInDetailPage = productDetailPage.getProductName();
         String productPriceInDetailPage = productDetailPage.getProductPrice();
 
-        Assert.assertEquals(productNameInDetailPage, productName);
-        Assert.assertEquals(productPriceInDetailPage, productPrice);
+        softAssert.assertEquals(productNameInDetailPage, productName);
+        softAssert.assertEquals(productPriceInDetailPage, productPrice);
+        softAssert.assertAll();
+    }
 
+    @Test
+        public void validateCheckOut() throws InterruptedException {
+        searchPage = homePage.tapOnSearchField();
+        productListPage = searchPage.searchItem("Table");
+        productDetailPage = productListPage.openProductDetails(0);
+        String productNameInDetailPage = productDetailPage.getProductName();
         productDetailPage.addToCart(2);
         productListPage = productDetailPage.backToProductList();
         homePage = searchPage.exitSearch();
         shoppingBagPage = homePage.tapOnCart();
         String itemInCart = shoppingBagPage.cartList();
-
-        Assert.assertEquals(itemInCart, productName);
-
+        softAssert.assertEquals(itemInCart,productNameInDetailPage);
+        softAssert.assertAll();
         productcheckOut = shoppingBagPage.productCheckout();
         productcheckOut.cancel_CheckOut();
         shoppingBagPage = productcheckOut.confirm_Cancel_Popup();

@@ -10,9 +10,6 @@ import org.openqa.selenium.By;
 import java.util.List;
 
 public class ProductListPage extends BaseTest {
-    //  @AndroidFindAll(xpath="//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.ikea.alfuttaim.store:id/rv_products\"]/android.view.ViewGroup[@index='0']")
-    // private MobileElement products;
-
 
     @AndroidFindBys({
             @AndroidBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.ikea.alfuttaim.store:id/rv_products\"]/android.view.ViewGroup")})
@@ -25,9 +22,13 @@ public class ProductListPage extends BaseTest {
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/tv_regular_price")
     private MobileElement productPrice;
 
-    public String getProductName(int index) {
+    public String getProductName(int index) throws InterruptedException {
         waitForVisibility(productName);
-        String name = products.get(index).findElement(By.id(itemName)).getText();
+        String name=null;
+        if (productName.isDisplayed())
+             name= products.get(index).findElement(By.id(itemName)).getText();
+        else
+            driver.wait();
 
         System.out.println("Product name is " + name);
         return name;

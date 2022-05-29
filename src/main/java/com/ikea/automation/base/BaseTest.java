@@ -41,7 +41,7 @@ public class BaseTest {
             properties.load(inputStream);
 
             String appUrl = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "apps/IKEA_v1.2.7.apk";
-            // URL appUrl=getClass().getClassLoader().getResource(properties.getProperty("andriodApplocation"));
+            // URL appUrl=getClass().getClassLoader().getResource(properties.getProperty("androidApplication"));
             DesiredCapabilities caps = new DesiredCapabilities();
             caps.setCapability(MobileCapabilityType.PLATFORM_NAME, platformName);
             caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
@@ -51,8 +51,6 @@ public class BaseTest {
             caps.setCapability(MobileCapabilityType.APP, appUrl);
             caps.setCapability("avd", "Pixel_3");
             caps.setCapability("avdLaunchTimeout", 300000);
-            //  caps.setCapability("appPackage","com.ikea.alfuttaim.store");
-            //caps.setCapability("appActivity","com.ikea.alfuttaim.store/com.ikea.kompis.welcomescreen.WelcomeActivity");
 
             URL url = new URL(properties.getProperty("appiumURL"));
             driver = new AndroidDriver(url, caps);
@@ -95,7 +93,7 @@ public class BaseTest {
 
     @AfterTest
     public void afterTest() {
-        //    driver.quit();
+            driver.quit();
 
     }
 }
