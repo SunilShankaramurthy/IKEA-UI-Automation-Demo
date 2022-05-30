@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
+
 
 public class ShoppingBagTest extends BaseTest {
     HomePage homePage;
