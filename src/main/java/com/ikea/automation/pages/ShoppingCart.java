@@ -12,6 +12,9 @@ public class ShoppingCart extends BasePage {
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/btn_checkout")
     private MobileElement checkout;
 
+    @AndroidFindBy(id="com.ikea.alfuttaim.store:id/product_qty")
+    private MobileElement quanity;
+
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/iv_remove")
     private MobileElement deleteItem;
 
@@ -26,6 +29,9 @@ public class ShoppingCart extends BasePage {
         return productName.getText();
     }
 
+    public String checkQuantity(){
+        return getText(quanity, "The quantity selected is: ");
+    }
     public ProductCheckOut productCheckout() {
         click(checkout, "Checkout product");
         return new ProductCheckOut();
