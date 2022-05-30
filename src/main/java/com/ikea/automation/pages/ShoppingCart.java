@@ -1,10 +1,10 @@
 package com.ikea.automation.pages;
 
-import com.ikea.automation.base.BaseTest;
+import com.ikea.automation.base.BasePage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class ShoppingCart extends BaseTest {
+public class ShoppingCart extends BasePage {
 
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/tv_product_name")
     private MobileElement productName;
@@ -18,7 +18,7 @@ public class ShoppingCart extends BaseTest {
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/popup_btn")
     private MobileElement confirmDelete;
 
-    @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/empty_text")
+    @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/shopping_cart_empty")
     private MobileElement validateEmptyCart;
 
 
@@ -48,8 +48,8 @@ public class ShoppingCart extends BaseTest {
         return this;
     }
 
-    public String validateEmptyCart() {
-        return getAttribute(validateEmptyCart, "text");
+    public boolean validateEmptyCart() {
+        return getBool(validateEmptyCart, "Cart is empty? ");
 
     }
 

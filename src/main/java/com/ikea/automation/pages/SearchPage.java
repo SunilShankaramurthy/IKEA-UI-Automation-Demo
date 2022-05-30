@@ -1,10 +1,10 @@
 package com.ikea.automation.pages;
 
-import com.ikea.automation.base.BaseTest;
+import com.ikea.automation.base.BasePage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class SearchPage extends BaseTest {
+public class SearchPage extends BasePage {
 
 
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/search_products_text_view")
@@ -18,7 +18,7 @@ public class SearchPage extends BaseTest {
 
     public ProductListPage searchItem(String itemName) {
 
-        sendKeys(searchItem, itemName);
+        sendKeys(searchItem, itemName, "Enter the product name");
         click(searchItemfromList, "Select item " + itemName + " from search list");
         return new ProductListPage();
     }

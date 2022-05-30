@@ -3,8 +3,9 @@ package com.ikea.automation.listeners;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.ikea.automation.base.BaseTest;
+import com.ikea.automation.base.DriverManager;
 import com.ikea.automation.reports.ExtentReport;
-import com.ikea.automation.utils.TestUtils;
+
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -19,13 +20,13 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 
 public class TestListener implements ITestListener {
-    TestUtils testUtils = new TestUtils();
+
 
     @Override
     public void onTestStart(ITestResult result) {
-        BaseTest baseTest = new BaseTest();
+        DriverManager driverManager = new DriverManager();
         ExtentReport.startTest(result.getName(), result.getMethod().getDescription())
-                .assignCategory("Demo"+ baseTest.getPlatform() + "_" + baseTest.getDeviceName())
+                .assignCategory("Demo" )//+ driverManager.getPlatform() + "_" + baseTest.getDeviceName())
                 .assignAuthor("Sunil Shankaramurthy");
 
     }
@@ -40,10 +41,10 @@ public class TestListener implements ITestListener {
             StringWriter stringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(stringWriter);
             result.getThrowable().printStackTrace(printWriter);
-          //  testUtils.log().log(Level.ERROR,stringWriter.toString());;
+            //  testUtils.log().log(Level.ERROR,stringWriter.toString());;
 
-            BaseTest base = new BaseTest();
-            File file = base.getDriver().getScreenshotAs(OutputType.FILE);
+            DriverManager driverManager = new DriverManager();
+            File file = driverManager.getDriver().getScreenshotAs(OutputType.FILE);
 
             byte[] encoded = null;
             try {

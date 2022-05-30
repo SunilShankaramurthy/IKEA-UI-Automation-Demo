@@ -1,10 +1,10 @@
 package com.ikea.automation.pages;
 
-import com.ikea.automation.base.BaseTest;
+import com.ikea.automation.base.BasePage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class ProductDetailPage extends BaseTest {
+public class ProductDetailPage extends BasePage {
 
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/tv_product_name")
     private MobileElement detailProductName;

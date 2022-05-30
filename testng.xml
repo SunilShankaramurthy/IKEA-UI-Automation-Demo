@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="tests">
+<suite name="All Test Suite" parallel="false">
     <listeners>
         <listener class-name="com.ikea.automation.listeners.TestListener"/>
+        <listener class-name="com.ikea.automation.listeners.retry_mechanism.RetryTransform"></listener>
     </listeners>
     <test verbose="2" preserve-order="true" name="/Users/sunilshankaramurthy/My_Projs/API_Auto/IKEA_UI_Automation_Demo">
-
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="11.0"/>
-        <parameter name="deviceName" value="Pixel_3"/>
-        <parameter name="systemPort" value="11000"/>
-        <parameter name="udid" value="emulator-5554"/>
-        <parameter name="emulator" value="true"/>
-
         <classes>
             <class name="com.ikea.automation.cart.ShoppingBagTest"/>
         </classes>
-
     </test>
 </suite>

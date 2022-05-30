@@ -1,10 +1,10 @@
 package com.ikea.automation.pages;
 
-import com.ikea.automation.base.BaseTest;
+import com.ikea.automation.base.BasePage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class ProductCheckOut extends BaseTest {
+public class ProductCheckOut extends BasePage {
 
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/popup_other_btn")
     private MobileElement confirmCancel;
