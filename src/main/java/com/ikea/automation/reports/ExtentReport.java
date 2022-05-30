@@ -23,9 +23,7 @@ public class ExtentReport {
             sparkReporter.config().setEncoding("utf-8");
             extentReports = new ExtentReports();
             extentReports.attachReporter(sparkReporter);
-
         }
-
         return extentReports;
     }
 
@@ -33,15 +31,9 @@ public class ExtentReport {
         return (ExtentTest) extentTestMap.get((int) Thread.currentThread().getId());
     }
 
-//    public static synchronized void endTest() {
-//        extentReports.endTest(extentTestMap.get((int) (long) (Thread.currentThread().getId())));
-//    }
-
-
     public static synchronized ExtentTest startTest(String testName, String desc) {
         ExtentTest test = getReporter().createTest(testName, desc);
         extentTestMap.put((int) Thread.currentThread().getId(), test);
-
         return test;
     }
 }

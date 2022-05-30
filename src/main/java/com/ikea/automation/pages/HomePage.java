@@ -7,10 +7,8 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class HomePage extends BasePage {
 
-
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/textView7")
     private MobileElement searchField;
-
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"IKEA UAE\"])[1]")
     private MobileElement shoppingBagIcon;
@@ -25,7 +23,6 @@ public class HomePage extends BasePage {
     public SearchPage tapOnSearchField() {
         click(searchField, "Tap on Search field");
         return new SearchPage();
-
     }
 
     public ShoppingCart tapOnCart() {

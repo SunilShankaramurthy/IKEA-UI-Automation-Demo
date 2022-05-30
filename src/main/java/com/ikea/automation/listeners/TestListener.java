@@ -2,10 +2,8 @@ package com.ikea.automation.listeners;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
-import com.ikea.automation.base.BaseTest;
 import com.ikea.automation.base.DriverManager;
 import com.ikea.automation.reports.ExtentReport;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -15,20 +13,15 @@ import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 
 public class TestListener implements ITestListener {
 
-
     @Override
     public void onTestStart(ITestResult result) {
-        DriverManager driverManager = new DriverManager();
         ExtentReport.startTest(result.getName(), result.getMethod().getDescription())
-                .assignCategory("Demo" )//+ driverManager.getPlatform() + "_" + baseTest.getDeviceName())
+                .assignCategory("Android App Testing")
                 .assignAuthor("Sunil Shankaramurthy");
-
     }
 
     @Override
@@ -37,12 +30,6 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestFailure(ITestResult result) {
-        if (result.getThrowable() != null) {
-            StringWriter stringWriter = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(stringWriter);
-            result.getThrowable().printStackTrace(printWriter);
-            //  testUtils.log().log(Level.ERROR,stringWriter.toString());;
-
             DriverManager driverManager = new DriverManager();
             File file = driverManager.getDriver().getScreenshotAs(OutputType.FILE);
 
@@ -50,15 +37,12 @@ public class TestListener implements ITestListener {
             try {
                 encoded = Base64.encodeBase64(FileUtils.readFileToByteArray(file));
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
             ExtentReport.getTest().fail("Test Failed",
                     MediaEntityBuilder.createScreenCaptureFromBase64String(new String(encoded, StandardCharsets.US_ASCII)).build());
             ExtentReport.getTest().fail(result.getThrowable());
         }
-
-    }
 
     @Override
     public void onTestSkipped(ITestResult result) {
@@ -72,12 +56,10 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailedWithTimeout(ITestResult result) {
-
     }
 
     @Override
     public void onStart(ITestContext context) {
-
     }
 
     @Override

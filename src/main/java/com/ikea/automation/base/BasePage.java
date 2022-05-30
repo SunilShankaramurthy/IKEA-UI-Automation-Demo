@@ -2,7 +2,6 @@ package com.ikea.automation.base;
 
 import com.aventstack.extentreports.Status;
 import com.ikea.automation.reports.ExtentReport;
-
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -26,15 +25,12 @@ public class BasePage {
 
     public void click(MobileElement e, String msg) {
         waitForVisibility(e);
-
         ExtentReport.getTest().log(Status.INFO, msg);
         e.click();
     }
 
-
     public void sendKeys(MobileElement e, String txt, String msg) {
         waitForVisibility(e);
-
         ExtentReport.getTest().log(Status.INFO, msg);
         e.sendKeys(txt);
     }
@@ -45,7 +41,6 @@ public class BasePage {
     }
 
     public String getText(MobileElement e, String msg) {
-
         String txt = getAttribute(e, "text");
         ExtentReport.getTest().log(Status.INFO, msg + txt);
         return txt;
@@ -53,14 +48,13 @@ public class BasePage {
 
     public Boolean getBool(MobileElement e, String msg) {
         waitForVisibility(e);
-        Boolean result=e.isDisplayed();
-        ExtentReport.getTest().log(Status.INFO, msg +result);
+        Boolean result = e.isDisplayed();
+        ExtentReport.getTest().log(Status.INFO, msg + result);
         return result;
     }
 
 
     public void performTouch(int xOffset, int yOffset, String msg) {
-
         TouchAction touchAction = new TouchAction(DriverManager.getDriver());
         touchAction.tap(PointOption.point(xOffset, yOffset)).perform();
         ExtentReport.getTest().log(Status.INFO, msg);

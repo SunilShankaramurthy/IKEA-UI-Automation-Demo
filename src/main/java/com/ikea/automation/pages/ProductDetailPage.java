@@ -3,7 +3,6 @@ package com.ikea.automation.pages;
 import com.ikea.automation.base.BasePage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import org.openqa.selenium.By;
 
 public class ProductDetailPage extends BasePage {
 
@@ -29,7 +28,7 @@ public class ProductDetailPage extends BasePage {
 
     public ProductDetailPage addToCart(int quantity) {
         for (int i = 1; i <= quantity; i++)
-            click(addtoCart, "Add item quantity %d to cart " + i);
+            click(addtoCart, "Add item quantity "+i+" to cart");
         return this;
     }
 

@@ -2,25 +2,18 @@ package com.ikea.automation.base;
 
 import com.ikea.automation.utils.JsonParser;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-
-
 import org.json.JSONObject;
-
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
-import java.io.FileReader;
-import java.io.InputStream;
-
 
 public class BaseTest {
     public static JSONObject productDetails;
     private static AppiumDriverLocalService server;
     public WebDriverWait wait;
-
 
 
     @BeforeSuite
@@ -45,16 +38,13 @@ public class BaseTest {
         if (server.isRunning()) {
             server.stop();
             System.out.println("Appium server started");
-
         }
     }
 
     @BeforeTest
     public void beforeTest() throws Exception {
         DriverManager.initializeDriver();
-        productDetails= JsonParser.parse("productData.json");
-
-
+        productDetails = JsonParser.parse("productData.json");
     }
 
 

@@ -5,7 +5,6 @@ import com.ikea.automation.utils.JsonParser;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.InputStream;
@@ -25,13 +24,6 @@ public class DriverManager {
         driver.set(setDriver);
     }
 
-    public Properties getProps() {
-        return properties.get();
-    }
-
-    public static void setProps(Properties setProps) {
-        properties.set(setProps);
-    }
     public static void initializeDriver() throws Exception {
 
         AppiumDriver driver;
@@ -53,6 +45,10 @@ public class DriverManager {
         URL url = new URL(properties.getProperty("appiumURL"));
         driver = new AndroidDriver(url, caps);
         setDriver(driver);
+    }
+
+    public static void setProps(Properties setProps) {
+        properties.set(setProps);
     }
 
 

@@ -6,7 +6,6 @@ import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AndroidFindBys;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -26,13 +25,12 @@ public class ProductListPage extends BasePage {
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/tv_regular_price")
     private MobileElement productPrice;
 
-    public String getProductName(int index) throws InterruptedException {
+    public String getProductName(int index) {
         return getText(products.get(index).findElement(By.id(itemId)), "Product name of the first item is: ");
     }
 
     public String getProductPrice(int index) {
-        return getText(products.get(index).findElement(By.id(itemPriceId)),"Product price of the first item is: ");
-
+        return getText(products.get(index).findElement(By.id(itemPriceId)), "Product price of the first item is: ");
     }
 
     public ProductDetailPage openProductDetails(int index) {

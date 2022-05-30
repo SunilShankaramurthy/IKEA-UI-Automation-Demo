@@ -21,16 +21,9 @@ public class ShoppingCart extends BasePage {
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/shopping_cart_empty")
     private MobileElement validateEmptyCart;
 
-
     public String cartList() {
         waitForVisibility(productName);
         return productName.getText();
-
-
-    }
-
-    public void checkProductQuantity() {
-
     }
 
     public ProductCheckOut productCheckout() {
@@ -50,7 +43,6 @@ public class ShoppingCart extends BasePage {
 
     public boolean validateEmptyCart() {
         return getBool(validateEmptyCart, "Cart is empty? ");
-
     }
 
 }
