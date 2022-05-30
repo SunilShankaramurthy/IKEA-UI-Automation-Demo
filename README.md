@@ -20,7 +20,7 @@
     - Maintained device and app configurations in devices.json and config.properties files respectively.<br/>
     - Provides access to produce user defined Test Reports with screenshot for errored test scenarios.<br/> 
     
-    ** Framework is configured in such a way that, Appium server will start programatically when you run the suite using maven command which will even take care of stopping the server 
+    ** Framework is configured in such a way that, Appium server will start programatically when you run the suite using maven command which will even take     care of stopping the server 
     after the test completion. This avoids the manual intervention during multiple runs.
     However, we need to make sure that default port (4723) used by appium is available.
     To change the port, you need to start the server manually by using this command: appium -p <port>.
@@ -35,7 +35,14 @@
   
   
 ## Run-Command
-   mvn clean install -Dtestngfile={tesng_fileName} <br/>
+
+   Start the AVD from Android studio and type the command in the terminal
+   
+    ** mvn clean install -Dtestngfile={testng} 
+   
+   If you want to retry the failed tests immediately then please use the below command (bydefault maxRetryCount=0)
+   
+      ** mvn clean install -Dtestngfile={testng} -DmaxRetryCount=2
       
 ## Report
    The framework will generate 2 test reports<br/>
