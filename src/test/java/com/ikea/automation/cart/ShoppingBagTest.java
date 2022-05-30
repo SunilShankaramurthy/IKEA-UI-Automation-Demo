@@ -21,8 +21,6 @@ public class ShoppingBagTest extends BaseTest {
     ShoppingCart shoppingBagPage;
     ProductCheckOut productcheckOut;
 
-    Logger logger=Logger.getLogger(ShoppingBagTest.class.getName());
-
     @BeforeMethod
     public void beforeMethod(Method m) {
         homePage = new HomePage();
