@@ -1,8 +1,8 @@
 package com.ikea.automation.base;
 
-
 import com.ikea.automation.utils.JsonParser;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
+
 
 import org.json.JSONObject;
 
@@ -22,8 +22,10 @@ public class BaseTest {
     public WebDriverWait wait;
 
 
+
     @BeforeSuite
     public void beforeSuite() {
+
         server = getAppiumServerDefault();
         if (!server.isRunning()) {
             server.start();

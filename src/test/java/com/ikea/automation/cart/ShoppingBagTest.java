@@ -49,6 +49,7 @@ public class ShoppingBagTest extends BaseTest {
             productDetailPage = productHome.openProductDetails(0);
             String productNameInDetailPage = productDetailPage.getProductName();
             String productPriceInDetailPage = productDetailPage.getProductPrice();
+            productNameInDetailPage="abcd";
             softAssert.assertEquals(productNameInDetailPage, productName,"Product name is not matching");
             softAssert.assertEquals(productPriceInDetailPage, productPrice,"Product price is not matching");
             softAssert.assertAll();
@@ -57,7 +58,7 @@ public class ShoppingBagTest extends BaseTest {
         }
     }
 
-    @Test
+   // @Test
     public void validateCheckOut() throws InterruptedException {
         searchPage = homePage.tapOnSearchField();
         productHome = searchPage.searchItem(productDetails.getJSONObject("Product").getString("productName"));

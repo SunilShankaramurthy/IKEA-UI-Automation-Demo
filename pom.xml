@@ -83,7 +83,8 @@
                 <version>${maven-surefire-plugin}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <suiteXmlFile>${testngfile}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

@@ -3,6 +3,7 @@ package com.ikea.automation.pages;
 import com.ikea.automation.base.BasePage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.By;
 
 public class ProductDetailPage extends BasePage {
 
@@ -19,18 +20,11 @@ public class ProductDetailPage extends BasePage {
     private MobileElement backtoProductList;
 
     public String getProductName() {
-        //  String name=getAttribute(detailProductName,"getText()");
-
-        String name = detailProductName.getText();
-        System.out.println("Product name is " + name);
-        return name;
+        return getText(detailProductName, "Product name in product detail page: ");
     }
 
     public String getProductPrice() {
-        // String price=getAttribute(detailProductPrice,"getText()");
-        String price = detailProductPrice.getText();
-        System.out.println("Product name is " + price);
-        return price;
+        return getText(detailProductPrice, "Product price in product detail page: ");
     }
 
     public ProductDetailPage addToCart(int quantity) {
