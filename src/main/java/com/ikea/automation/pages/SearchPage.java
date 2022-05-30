@@ -2,9 +2,7 @@ package com.ikea.automation.pages;
 
 import com.ikea.automation.base.BaseTest;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.touch.offset.PointOption;
 
 public class SearchPage extends BaseTest {
 
@@ -21,16 +19,14 @@ public class SearchPage extends BaseTest {
     public ProductListPage searchItem(String itemName) {
 
         sendKeys(searchItem, itemName);
-        click(searchItemfromList);
+        click(searchItemfromList, "Select item " + itemName + " from search list");
         return new ProductListPage();
     }
 
     public HomePage exitSearch() throws InterruptedException {
-        TouchAction touchAction = new TouchAction(driver);
-        touchAction.tap(PointOption.point(140, 247)).perform();
-
-        click(exitSearchPage);
-        click(exitSearchPage);
+        performTouch(140, 247, "Tap on back icon from product list page");
+        click(exitSearchPage, "Tap on back arrow");
+        click(exitSearchPage, "Tap on back arrow");
         return new HomePage();
     }
 

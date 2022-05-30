@@ -4,7 +4,7 @@ import com.ikea.automation.base.BaseTest;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class ShoppingBagPage extends BaseTest {
+public class ShoppingCart extends BaseTest {
 
     @AndroidFindBy(id = "com.ikea.alfuttaim.store:id/tv_product_name")
     private MobileElement productName;
@@ -34,17 +34,17 @@ public class ShoppingBagPage extends BaseTest {
     }
 
     public ProductCheckOut productCheckout() {
-        click(checkout);
+        click(checkout, "Checkout product");
         return new ProductCheckOut();
     }
 
-    public ShoppingBagPage deleteFromCart() {
-        click(deleteItem);
+    public ShoppingCart deleteFromCart() {
+        click(deleteItem, "Delete the item from cart");
         return this;
     }
 
-    public ShoppingBagPage confirmProductDeletion() {
-        click(confirmDelete);
+    public ShoppingCart confirmProductDeletion() {
+        click(confirmDelete, "Confirming deleting the item from cart");
         return this;
     }
 

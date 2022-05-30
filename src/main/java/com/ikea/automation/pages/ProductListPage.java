@@ -12,6 +12,7 @@ import java.util.List;
 public class ProductListPage extends BaseTest {
 
     @AndroidFindBys({
+
             @AndroidBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.ikea.alfuttaim.store:id/rv_products\"]/android.view.ViewGroup")})
     public List<MobileElement> products;
 
@@ -24,11 +25,12 @@ public class ProductListPage extends BaseTest {
 
     public String getProductName(int index) throws InterruptedException {
         waitForVisibility(productName);
-        String name=null;
+        String name = null;
         if (productName.isDisplayed())
-             name= products.get(index).findElement(By.id(itemName)).getText();
+            name = products.get(index).findElement(By.id(itemName)).getText();
         else
             driver.wait();
+        name=getText(productName, "product in the first index is: "+productName);
 
         System.out.println("Product name is " + name);
         return name;

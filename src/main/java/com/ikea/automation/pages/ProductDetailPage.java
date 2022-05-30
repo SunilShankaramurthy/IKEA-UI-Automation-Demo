@@ -35,12 +35,12 @@ public class ProductDetailPage extends BaseTest {
 
     public ProductDetailPage addToCart(int quantity) {
         for (int i = 1; i <= quantity; i++)
-            click(addtoCart);
+            click(addtoCart, "Add item quantity %d to cart " + i);
         return this;
     }
 
     public ProductListPage backToProductList() {
-        click(backtoProductList);
+        click(backtoProductList, "Going back to product list page from product detail page");
         return new ProductListPage();
     }
 }
