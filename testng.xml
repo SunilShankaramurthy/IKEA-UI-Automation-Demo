@@ -5,7 +5,7 @@
         <listener class-name="com.ikea.automation.listeners.TestListener"/>
         <listener class-name="com.ikea.automation.listeners.retry_mechanism.RetryTransform"></listener>
     </listeners>
-    <test verbose="2" preserve-order="true" name="/Users/sunilshankaramurthy/My_Projs/API_Auto/IKEA_UI_Automation_Demo">
+    <test verbose="2" preserve-order="true" name="IKEA_UI_Automation_Demo">
         <classes>
             <class name="com.ikea.automation.cart.ShoppingBagTest"/>
         </classes>

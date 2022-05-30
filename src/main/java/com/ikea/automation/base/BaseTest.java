@@ -9,12 +9,12 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
+import java.util.logging.Logger;
+
 
 public class BaseTest {
     public static JSONObject productDetails;
     private static AppiumDriverLocalService server;
-    public WebDriverWait wait;
-
 
     @BeforeSuite
     public void beforeSuite() {

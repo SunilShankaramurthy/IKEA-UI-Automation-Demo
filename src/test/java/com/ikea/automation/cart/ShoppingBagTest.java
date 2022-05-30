@@ -9,7 +9,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
 
 public class ShoppingBagTest extends BaseTest {
     HomePage homePage;
@@ -18,6 +20,8 @@ public class ShoppingBagTest extends BaseTest {
     ProductDetailPage productDetailPage;
     ShoppingCart shoppingBagPage;
     ProductCheckOut productcheckOut;
+
+    Logger logger=Logger.getLogger(ShoppingBagTest.class.getName());
 
     @BeforeMethod
     public void beforeMethod(Method m) {
@@ -31,7 +35,7 @@ public class ShoppingBagTest extends BaseTest {
         ((InteractsWithApps) DriverManager.getDriver()).closeApp();
     }
 
-    @Test(priority = 0)
+    @Test
     public void compareProductDetails() throws Exception {
         try {
             SoftAssert softAssert = new SoftAssert();
@@ -46,28 +50,32 @@ public class ShoppingBagTest extends BaseTest {
             softAssert.assertEquals(productPriceInDetailPage, productPrice, "Product price is not matching");
             softAssert.assertAll();
         } catch (Exception e) {
-            throw new Exception("Exception while loading page");
+            throw e;
         }
     }
 
      @Test
     public void validateCheckOut() {
-        searchPage = homePage.tapOnSearchField();
-        productHome = searchPage.searchItem(productDetails.getJSONObject("Product").getString("productName"));
-        productDetailPage = productHome.openProductDetails(0);
-        String productNameInDetailPage = productDetailPage.getProductName();
-        productDetailPage.addToCart(productDetails.getJSONObject("Product").getInt("quantity"));
-        productHome = productDetailPage.backToProductList();
-        homePage = searchPage.exitSearch();
-        shoppingBagPage = homePage.tapOnCart();
-        String itemInCart = shoppingBagPage.cartList();
-        Assert.assertEquals(itemInCart, productNameInDetailPage, "Product name is not matching ");
+         try {
+             searchPage = homePage.tapOnSearchField();
+             productHome = searchPage.searchItem(productDetails.getJSONObject("Product").getString("productName"));
+             productDetailPage = productHome.openProductDetails(0);
+             String productNameInDetailPage = productDetailPage.getProductName();
+             productDetailPage.addToCart(productDetails.getJSONObject("Product").getInt("quantity"));
+             productHome = productDetailPage.backToProductList();
+             homePage = searchPage.exitSearch();
+             shoppingBagPage = homePage.tapOnCart();
+             String itemInCart = shoppingBagPage.cartList();
+             Assert.assertEquals(itemInCart, productNameInDetailPage, "Product name is not matching ");
 
-        productcheckOut = shoppingBagPage.productCheckout();
-        productcheckOut.cancel_CheckOut();
-        shoppingBagPage = productcheckOut.confirm_Cancel_Popup();
-        shoppingBagPage.deleteFromCart();
-        shoppingBagPage.confirmProductDeletion();
-        Assert.assertEquals(shoppingBagPage.validateEmptyCart(), true);
+             productcheckOut = shoppingBagPage.productCheckout();
+             productcheckOut.cancel_CheckOut();
+             shoppingBagPage = productcheckOut.confirm_Cancel_Popup();
+             shoppingBagPage.deleteFromCart();
+             shoppingBagPage.confirmProductDeletion();
+             Assert.assertEquals(shoppingBagPage.validateEmptyCart(), true);
+         } catch (Exception e) {
+             throw e;
+         }
     }
 }

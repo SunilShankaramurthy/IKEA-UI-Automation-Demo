@@ -24,6 +24,9 @@ public class DriverManager {
         driver.set(setDriver);
     }
 
+    /**
+     * Initialising the driver.
+     * */
     public static void initializeDriver() throws Exception {
 
         AppiumDriver driver;
@@ -32,9 +35,7 @@ public class DriverManager {
         properties.load(inputStream);
         setProps(properties);
 
-
         JSONObject deviceObj = new JSONObject(JsonParser.parse("Devices.json").getJSONObject("devices").toString());
-
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", deviceObj.getString("platform"));
@@ -50,6 +51,4 @@ public class DriverManager {
     public static void setProps(Properties setProps) {
         properties.set(setProps);
     }
-
-
 }
