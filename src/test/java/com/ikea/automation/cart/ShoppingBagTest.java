@@ -65,7 +65,7 @@ public class ShoppingBagTest extends BaseTest {
              shoppingBagPage = homePage.tapOnCart();
              String itemInCart = shoppingBagPage.cartList();
              Assert.assertEquals(itemInCart, productNameInDetailPage, "Product name is not matching ");
-             Assert.assertEquals(Integer.parseInt(shoppingBagPage.checkQuantity()),productDetails.getJSONObject("Product").getInt("quantity"));
+             Assert.assertEquals(shoppingBagPage.checkQuantity(),String.valueOf (productDetails.getJSONObject("Product").getInt("quantity")));
              productcheckOut = shoppingBagPage.productCheckout();
              productcheckOut.cancel_CheckOut();
              shoppingBagPage = productcheckOut.confirm_Cancel_Popup();
